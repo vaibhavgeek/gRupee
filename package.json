@@ -21,5 +21,10 @@
   ],
   "devDependencies": {
     "dotenv": "^16.4.1"
-  }
+  },
+  "description": "We are using onramp.money to create a digital rupee stablecoin which is overcollaterlised by USDC to allow seamless capital flow in global markets.  ## Goals",
+  "main": "initialize.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
