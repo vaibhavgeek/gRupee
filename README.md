@@ -1,47 +1,31 @@
-# Expanding the Application: Depositors and Balances
+# Creating Digital Rupee Stablecoin with Stellar 
+We are using onramp.money to create a digital rupee stablecoin which is overcollaterlised by USDC to allow seamless capital flow in global markets. 
+## Goals
 
-## Setup
+- [x] Create a smart contract that deposits and gives gINR 
+- [x] Allow people to withdraw gINR to their frieghter wallet 
+- [x] Burn USDC equivalent from the repository
+- [x] Create frontend to execute deposit and withdraw functions 
+- [ ] Create a landing page
+- [ ] Deploy on Mainnet 
+- [ ] Ensure compliance and regulatory feasibility 
 
-Tun the following command to deploy the contract to the testnet, build the typescript bindings, and install the dependencies:
+### Run this locally
 
-```bash
-bun run setup
-```
+Install Rust and other packages from the instructions mentioned 
+(here)[https://developers.stellar.org/docs/smart-contracts/getting-started/setup]
 
-## Run the Dapp
+To deploy the contracts see `scripts/exec.sh`
 
-To run the dapp, run the following command:
+To run the entire dapp, run 
 
-```bash
-cd staking-dapp
-bun run dev
-```
+- `cp .env.example .env`
+- `npm install . `
+- `npm init`
+- `npm run dev`
 
-If you get stuck or have any questions, feel free to reach out to us in the [soroban-dev discord channel Stellar ](https://discord.com/channels/897514728459468821/1037066367326752818).
-
-This project was created using `bun init` in bun v1.1.7. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
-
-
----
-<!-- The following is the Frontend Template's README.md -->
 
 # Soroban Frontend in Astro
 
 A Frontend Template suitable for use with `soroban contract init --frontend-template`, powered by [Astro](https://astro.build/).
 
-# Getting Started
-
-- `cp .env.example .env`
-- `npm install`
-- `npm run dev`
-
-# How it works
-
-If you look in [package.json](./package.json), you'll see that the `start` & `dev` scripts first run the [`initialize.js`](./initialize.js) script. This script loops over all contracts in `contracts/*` and, for each:
-
-1. Deploys to a local network (_needs to be running with `docker run` or `soroban network start`_)
-2. Saves contract IDs to `.soroban/contract-ids`
-3. Generates TS bindings for each into the `packages` folder, which is set up as an [npm workspace](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#workspaces)
-4. Create a file in `src/contracts` that imports the contract client and initializes it for the `standalone` network.
-
-You're now ready to import these initialized contract clients in your [Astro templates](https://docs.astro.build/en/core-concepts/astro-syntax/) or your [React, Svelte, Vue, Alpine, Lit, and whatever else JS files](https://docs.astro.build/en/core-concepts/framework-components/#official-ui-framework-integrations). You can see an example of this in [index.astro](./src/pages/index.astro).
