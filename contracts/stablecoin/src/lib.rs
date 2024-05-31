@@ -72,7 +72,7 @@ impl GlobalRupee {
         // Mint the share token to the contributor
         let share_token = Self::get_share_token(env.clone());
         Self::set_exchange_price(env.clone(), exchange_price);
-        let share_amount = amount * exchange_price;
+        let share_amount = amount * exchange_price * 10000000000;
         token::Client::new(&env, &share_token).mint(&contributor, &share_amount);
         // Update the contribution in the storage
         Self::set_contribution(env.clone(), contributor.clone(), amount);
@@ -95,7 +95,7 @@ impl GlobalRupee {
         let contribution = Self::get_user_contribution(env.clone(), contributor.clone());
         let exchange_price: i128 = Self::get_exchange_price(env.clone());
         // Transfer the contribution to the recipient
-        let withdraw_amount = contribution * exchange_price;
+        let withdraw_amount = contribution * exchange_price * 10000000000;
         token::Client::new(&env, &token).transfer(
             &env.current_contract_address(),
             &recipient,

@@ -50,8 +50,15 @@ soroban contract invoke \
   -- \
   get_share_token_balance \
   --user vaibhav
+  
+  soroban contract invoke \
+  --id CDWMGTUQRSEG2MLZE75CBLZGIP2T2CMEKR4NATOAGIFXLBS44N2NGS5A \
+  --source vaibhav \
+  --network testnet \
+  -- \
+  get_share_token 
 
   soroban contract bindings typescript \
   --network testnet \
   --contract-id CDWMGTUQRSEG2MLZE75CBLZGIP2T2CMEKR4NATOAGIFXLBS44N2NGS5A \
-  --output-dir packages/grup
+  --output-dir packages/grup --overwrite

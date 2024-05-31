@@ -1,5 +1,5 @@
 # Creating Digital Rupee Stablecoin with Stellar 
-We are using onramp.money to create a digital rupee stablecoin which is overcollaterlised by USDC to allow seamless capital flow in global markets. 
+We are using onramp.money to create a digital rupee stablecoin which is overcollaterlised by USDC to allow seamless capital flow of global rupee in the global markets. 
 ## Goals
 
 - [x] Create a smart contract that deposits and gives gINR 

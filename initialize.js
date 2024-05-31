@@ -40,6 +40,7 @@ function exe(command) {
 function fund_all() {
   exe(`${soroban} keys generate ${process.env.SOROBAN_ACCOUNT}`);
   exe(`${soroban} keys fund ${process.env.SOROBAN_ACCOUNT}`);
+  exe(`${soroban} keys address ${process.env.SOROBAN_ACCOUNT}`)
 }
 
 function build_all() {
@@ -53,7 +54,9 @@ function filenameNoExtension(filename) {
 }
 
 function deploy(wasm) {
-  exe(`(${soroban} contract deploy --wasm ${wasm} --ignore-checks)  CDWMGTUQRSEG2MLZE75CBLZGIP2T2CMEKR4NATOAGIFXLBS44N2NGS5A`);
+  exe(`cat ${dirname}/.soroban/contract-ids/${filenameNoExtension(wasm)}.txt`)
+  exe(`(${soroban} contract deploy --wasm ${wasm} --ignore-checks) > ${dirname}/.soroban/contract-ids/${filenameNoExtension(wasm)}.txt`);
+  
 }
 
 function deploy_all() {
