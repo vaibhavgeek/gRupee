@@ -1,0 +1,32 @@
+<strong>Incrementor</strong><br />
+Current value: <strong id="current-value" aria-live="polite">???</strong><br />
+<br />
+<button data-increment aria-controls="current-value">Deposit 10000000 at 83</button>
+
+<script>
+  import grup from "../contracts/soroban_grupee_contract";
+  import { isAllowed, getPublicKey, signTransaction } from '@stellar/freighter-api';
+  const button = document.querySelector("[data-increment]");
+  const currentValue = document.querySelector("#current-value");
+  if (await isAllowed()) {
+    const publicKey = await getPublicKey();
+    if (publicKey) grup.options.publicKey = publicKey;
+  }
+  button.addEventListener("click", async () => {
+    button.disabled = true;
+    button.classList.add("loading");
+    currentValue.innerHTML =
+      currentValue.innerHTML +
+      '<span class="visually-hidden"> – updating…</span>';
+
+    const tx = await grup.deposit({"contributor":publicKey,"token": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC","amount": BigInt(10000000), "exchange_price": BigInt(83)});
+    const { result } = await tx.signAndSend({signTransaction});
+
+    // Only use `innerHTML` with contract values you trust!
+    // Blindly using values from an untrusted contract opens your users to script injection attacks!
+    currentValue.innerHTML = result.toString();
+
+    button.disabled = false;
+    button.classList.remove("loading");
+  });
+</script>
